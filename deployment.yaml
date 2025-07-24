@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node-todo-cicd-deployment  # Name of the deployment
+  name: my-node-app-deployment  # Name of the deployment
 spec:
   replicas: 3  # Number of replicas/pods you want to run
   selector:
     matchLabels:
-      app: node-todo-cicd  # Label selector to match with the pods
+      app: my-node-app  # Label selector to match with the pods
   template:
     metadata:
       labels:
-        app: node-todo-cicd  # Apply the label for identification
+        app: my-node-app  # Apply the label for identification
     spec:
       containers:
-        - name: node-todo-cicd-container  # Container name
-          image: sajeebchandradas/node-todo-cicd:latest  # Use the actual Docker image for your app
+        - name: my-node-app-container  # Container name
+          image: sajeebchandradas/my-node-app:latest  # Use the actual Docker image for your app
           ports:
             - containerPort: 8000  # Port where the app listens inside the containe
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: node-todo-cicd-service  # The name of the service within the cluster
+  name: my-node-app-service  # The name of the service within the cluster
 spec:
   selector:
-    app: node-todo-cicd  # Match the selector with the deployment label
+    app: my-node-app  # Match the selector with the deployment label
   ports:
     - protocol: TCP
       port: 80  # Port exposed by the service within the cluster
